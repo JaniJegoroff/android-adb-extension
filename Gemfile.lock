@@ -1,0 +1,29 @@
+PATH
+  remote: .
+  specs:
+    android-adb-extension (0.0.1)
+      to_boolean (~> 1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.4.3)
+    builder (3.2.2)
+    minitest (5.4.1)
+    minitest-reporters (1.0.5)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
+    rake (10.3.2)
+    ruby-progressbar (1.5.1)
+    to_boolean (1.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  android-adb-extension!
+  minitest (~> 5.4)
+  minitest-reporters (~> 1.0)
+  rake (~> 10.3)
