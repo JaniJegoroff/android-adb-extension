@@ -1,3 +1,5 @@
+# Class to handle Android Debug Bridge shell commands
+#
 class ADB
   class << self
     def sdk
@@ -13,7 +15,9 @@ class ADB
     end
 
     def orientation
-      `adb shell dumpsys input | grep 'SurfaceOrientation' | awk '{ print $2 }'`.strip.to_i
+      `adb shell dumpsys input |
+       grep 'SurfaceOrientation' |
+       awk '{ print $2 }'`.strip.to_i
     end
 
     def portrait?
@@ -25,16 +29,16 @@ class ADB
     end
 
     def set_portrait
-      set_accelerometer_control(0)
-      res = set_device_orientation(0)
-      set_accelerometer_control(1)
+      change_accelerometer_control(0)
+      res = change_device_orientation(0)
+      change_accelerometer_control(1)
       res.empty? ? nil : res
     end
 
     def set_landscape
-      set_accelerometer_control(0)
-      res = set_device_orientation(1)
-      set_accelerometer_control(1)
+      change_accelerometer_control(0)
+      res = change_device_orientation(1)
+      change_accelerometer_control(1)
       res.empty? ? nil : res
     end
 
@@ -47,11 +51,11 @@ class ADB
     end
 
     def enable_airplane_mode
-      set_airplane_mode(true)
+      change_airplane_mode(1)
     end
 
     def disable_airplane_mode
-      set_airplane_mode(false)
+      change_airplane_mode(0)
     end
 
     def help
@@ -62,29 +66,31 @@ class ADB
 
     private
 
-    def set_accelerometer_control(aMode)
-      `adb shell content insert --uri content://settings/system --bind name:s:accelerometer_rotation --bind value:i:#{aMode}`
+    def change_accelerometer_control(aMode)
+      command = 'adb shell content insert'
+      param1 = '--uri content://settings/system'
+      param2 = '--bind name:s:accelerometer_rotation'
+      param3 = "--bind value:i:#{aMode}"
+
+      `#{command} #{param1} #{param2} #{param3}`
     end
 
-    def set_device_orientation(aOrientation)
-      `adb shell content insert --uri content://settings/system --bind name:s:user_rotation --bind value:i:#{aOrientation}`
+    def change_device_orientation(aOrientation)
+      command = 'adb shell content insert'
+      param1 = '--uri content://settings/system'
+      param2 = '--bind name:s:user_rotation'
+      param3 = "--bind value:i:#{aOrientation}"
+
+      `#{command} #{param1} #{param2} #{param3}`
     end
 
-    def set_airplane_mode(aMode)
-      bool = aMode.is_a?(TrueClass) || aMode.is_a?(FalseClass)
-      int = aMode.is_a?(Integer)
+    def change_airplane_mode(aMode)
+      command1 = "adb shell settings put global airplane_mode_on #{aMode}"
+      command2 = 'adb shell am broadcast'
+      param1 = '-a android.intent.action.AIRPLANE_MODE'
+      param2 = "--ez state #{aMode.to_boolean}"
 
-      raise 'invalid parameter' unless bool || int
-
-      if bool
-        mode = aMode.eql?(true) ? 1 : 0
-        state = aMode
-      else
-        mode = aMode
-        state = aMode.eql?(1) ? true : false
-      end
-
-      `adb shell settings put global airplane_mode_on #{mode} & adb shell am broadcast -a android.intent.action.AIRPLANE_MODE --ez state #{state}`
+      `#{command1} & #{command2} #{param1} #{param2}`
     end
   end
 end
