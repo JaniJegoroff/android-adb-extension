@@ -1,0 +1,10 @@
+# Config file for RuboCop static code analysis
+
+Style/VariableName:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
