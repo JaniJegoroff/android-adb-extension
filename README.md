@@ -81,6 +81,12 @@ Airplane mode
 
 > **`ADB.disable_airplane_mode`**
 
+Monkey
+
+> **`ADB.monkey('your.package.name')`** # Default event count is 500
+
+> **`ADB.monkey('your.package.name', 5000)`**
+
 See available methods
 
 > **`ADB.help`**

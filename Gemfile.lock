@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    android-adb-extension (0.0.2)
+    android-adb-extension (0.0.3)
       to_boolean (~> 1.0)
 
 GEM

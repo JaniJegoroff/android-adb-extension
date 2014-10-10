@@ -58,6 +58,10 @@ class ADB
       change_airplane_mode(0)
     end
 
+    def monkey(aPackageName, aEventCount = 500)
+      `adb shell monkey -p #{aPackageName} #{aEventCount}`
+    end
+
     def help
       public_methods(false)
     end
