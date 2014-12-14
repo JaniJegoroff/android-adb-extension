@@ -87,6 +87,20 @@ Monkey
 
 > **`ADB.monkey('your.package.name', 5000)`**
 
+Lock and unlock screen
+
+> **`ADB.lock`**
+
+> **`ADB.unlock`**
+
+Send application to background
+
+> **`ADB.send_to_background`**
+
+Bring application to foreground
+
+> **`ADB.bring_to_foreground('your.package.name', 'path.to.activity')`**
+
 See available methods
 
 > **`ADB.help`**

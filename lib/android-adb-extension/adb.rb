@@ -62,6 +62,28 @@ class ADB
       `adb shell monkey -p #{aPackageName} #{aEventCount}`
     end
 
+    def lock
+      cmd = 'adb shell input keyevent 26'
+      `#{cmd}`
+      res = `#{cmd}`
+      res.empty? ? nil : res
+    end
+
+    def unlock
+      res = `adb shell input keyevent 82`
+      res.empty? ? nil : res
+    end
+
+    def send_to_background
+      res = `adb shell input keyevent 3`
+      res.empty? ? nil : res
+    end
+
+    def bring_to_foreground(aPackage, aActivity)
+      res = `adb shell am start -n #{aPackage}/#{aActivity}`
+      res.empty? ? nil : res
+    end
+
     def help
       public_methods(false)
     end
