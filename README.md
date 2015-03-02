@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/android-adb-extension.svg)](http://badge.fury.io/rb/android-adb-extension)
+[![Code Climate](https://codeclimate.com/github/JaniJegoroff/android-adb-extension/badges/gpa.svg)](https://codeclimate.com/github/JaniJegoroff/android-adb-extension)
 [![Dependency Status](https://gemnasium.com/JaniJegoroff/android-adb-extension.svg)](https://gemnasium.com/JaniJegoroff/android-adb-extension)
 
 android-adb-extension
