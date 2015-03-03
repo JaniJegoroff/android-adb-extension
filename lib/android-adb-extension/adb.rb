@@ -93,19 +93,18 @@ class ADB
     private
 
     def change_accelerometer_control(aMode)
-      command = "#{adb_shell_command} content insert"
-      param1 = '--uri content://settings/system'
-      param2 = '--bind name:s:accelerometer_rotation'
-      param3 = "--bind value:i:#{aMode}"
-
-      `#{command} #{param1} #{param2} #{param3}`
+      adb_settings_system_command('accelerometer_rotation', aMode)
     end
 
     def change_device_orientation(aOrientation)
+      adb_settings_system_command('user_rotation', aOrientation)
+    end
+
+    def adb_settings_system_command(aName, aValue)
       command = "#{adb_shell_command} content insert"
       param1 = '--uri content://settings/system'
-      param2 = '--bind name:s:user_rotation'
-      param3 = "--bind value:i:#{aOrientation}"
+      param2 = "--bind name:s:#{aName}"
+      param3 = "--bind value:i:#{aValue}"
 
       `#{command} #{param1} #{param2} #{param3}`
     end
