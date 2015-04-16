@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'to_boolean', '~> 1.0'
 
   gem.add_development_dependency 'rake', '~> 10.4'
-  gem.add_development_dependency 'minitest', '~> 5.5'
+  gem.add_development_dependency 'minitest', '~> 5.6'
   gem.add_development_dependency 'minitest-reporters', '~> 1.0'
-  gem.add_development_dependency 'rubocop', '~> 0.29'
+  gem.add_development_dependency 'rubocop', '~> 0.30'
 end
