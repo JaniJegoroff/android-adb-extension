@@ -12,7 +12,7 @@ desc 'Execute RuboCop static code analysis'
 RuboCop::RakeTask.new(:rubocop) do |t|
   t.patterns = ['lib/android-adb-extension/**/*.rb']
   t.options = %w(-D)
-  t.fail_on_error = false
+  t.fail_on_error = true
 end
 
 task :default => :test
