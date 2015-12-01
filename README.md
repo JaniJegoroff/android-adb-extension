@@ -111,6 +111,13 @@ Did you notice alias methods?
 
 > **`ADB.help`** --> **`ADB.h`**
 
+Multiple devices connected
+==========
+
+Define the device where you want `adb` commands to run. You can do that by defining environment variable `ANDROID_SERIAL`
+
+> **`ENV['ANDROID_SERIAL'] = 'ABCD1234'`**
+
 Run the tests
 ==========
 

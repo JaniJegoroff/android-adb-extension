@@ -118,20 +118,8 @@ class ADB
       `#{command1} & #{command2} #{param1} #{param2}`
     end
 
-    def multiple_devices?
-      !adb_device_arg.nil?
-    end
-
-    def device_id
-      adb_device_arg
-    end
-
-    def adb_device_arg
-      ENV['ADB_DEVICE_ARG']
-    end
-
     def adb_shell_command
-      multiple_devices? ? "adb -s #{device_id} shell" : 'adb shell'
+      'adb shell'
     end
   end
 end
