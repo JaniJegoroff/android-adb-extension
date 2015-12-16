@@ -103,6 +103,10 @@ Bring application to foreground
 
 > **`ADB.bring_to_foreground('your.package.name', 'path.to.activity')`**
 
+Reset app
+
+> **`ADB.reset_app('your.package.name')`**
+
 See available methods
 
 > **`ADB.help`**

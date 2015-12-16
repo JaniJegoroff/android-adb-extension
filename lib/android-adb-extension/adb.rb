@@ -84,6 +84,11 @@ class ADB
       res.empty? ? nil : res
     end
 
+    def reset_app(aPackage)
+      res = `#{adb_shell_command} pm clear #{aPackage}`
+      res.empty? ? nil : res
+    end
+
     def help
       public_methods(false)
     end
