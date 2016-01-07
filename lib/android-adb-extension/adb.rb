@@ -10,6 +10,14 @@ class ADB
       `#{adb_shell_command} getprop ro.build.version.release`.strip
     end
 
+    def serial
+      `#{adb_shell_command} getprop ro.serialno`.strip
+    end
+
+    def deviceName
+      `#{adb_shell_command} getprop ro.product.model`.strip
+    end
+
     def major
       release.chomp.split('.').first.to_i
     end
@@ -86,6 +94,21 @@ class ADB
 
     def reset_app(aPackage)
       res = `#{adb_shell_command} pm clear #{aPackage}`
+      res.empty? ? nil : res
+    end
+
+    def input_text(aText)
+      res = `#{adb_shell_command} input text #{aText}`
+      res.empty? ? nil : res
+    end
+
+    def stop_app(aPackage)
+      res = `#{adb_shell_command} am force-stop #{aPackage}`
+      res.empty? ? nil : res
+    end
+
+    def take_screenshot(aScreenshotName)
+      res = `#{adb_shell_command} screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > #{aScreenshotName}.png`
       res.empty? ? nil : res
     end
 
