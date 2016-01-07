@@ -14,7 +14,7 @@ class ADB
       `#{adb_shell_command} getprop ro.serialno`.strip
     end
 
-    def deviceName
+    def device_name
       `#{adb_shell_command} getprop ro.product.model`.strip
     end
 
