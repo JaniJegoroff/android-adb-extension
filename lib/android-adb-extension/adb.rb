@@ -107,8 +107,8 @@ class ADB
       res.empty? ? nil : res
     end
 
-    def take_screenshot(aScreenshotName)
-      res = `#{adb_shell_command} screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > #{aScreenshotName}.png`
+    def take_screenshot(aFileName)
+      res = `#{adb_shell_command} screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > #{aFileName}.png`
       res.empty? ? nil : res
     end
 
