@@ -57,6 +57,14 @@ Release version
 
 > **`ADB.release`**
 
+Device Serial number
+
+> **`ADB.serial`**
+
+Device name
+
+> **`ADB.device_name`**
+
 Major version
 
 > **`ADB.major`**
@@ -106,6 +114,18 @@ Bring application to foreground
 Reset app
 
 > **`ADB.reset_app('your.package.name')`**
+
+Input Text
+
+> **`ADB.input_text('string.to.input')`**
+
+Stop App
+
+> **`ADB.stop_app('your.package.name')`**
+
+Take screenshot
+
+> **`ADB.take_screenshot('file.name')`**
 
 See available methods
 
