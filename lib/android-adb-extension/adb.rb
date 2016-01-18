@@ -116,7 +116,7 @@ class ADB
       public_methods(false)
     end
 
-    alias_method :h, :help
+    alias h help
 
     private
 
