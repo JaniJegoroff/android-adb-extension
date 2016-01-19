@@ -10,16 +10,16 @@ class ADB
       `#{adb_shell_command} getprop ro.build.version.release`.strip
     end
 
+    def major
+      release.chomp.split('.').first.to_i
+    end
+
     def serial
       `#{adb_shell_command} getprop ro.serialno`.strip
     end
 
     def device_name
       `#{adb_shell_command} getprop ro.product.model`.strip
-    end
-
-    def major
-      release.chomp.split('.').first.to_i
     end
 
     def orientation
@@ -97,13 +97,18 @@ class ADB
       res.empty? ? nil : res
     end
 
-    def input_text(aText)
-      res = `#{adb_shell_command} input text #{aText}`
+    def stop_app(aPackage)
+      res = `#{adb_shell_command} am force-stop #{aPackage}`
       res.empty? ? nil : res
     end
 
-    def stop_app(aPackage)
-      res = `#{adb_shell_command} am force-stop #{aPackage}`
+    def uninstall_app(aPackage)
+      res = `#{adb_shell_command} pm uninstall #{aPackage}`
+      res.empty? ? nil : res
+    end
+
+    def input_text(aText)
+      res = `#{adb_shell_command} input text #{aText}`
       res.empty? ? nil : res
     end
 

@@ -57,6 +57,10 @@ Release version
 
 > **`ADB.release`**
 
+Major version
+
+> **`ADB.major`**
+
 Device Serial number
 
 > **`ADB.serial`**
@@ -64,10 +68,6 @@ Device Serial number
 Device name
 
 > **`ADB.device_name`**
-
-Major version
-
-> **`ADB.major`**
 
 Orientation
 
@@ -115,19 +115,23 @@ Reset app
 
 > **`ADB.reset_app('your.package.name')`**
 
-Input Text
-
-> **`ADB.input_text('string.to.input')`**
-
-Stop App
+Stop app
 
 > **`ADB.stop_app('your.package.name')`**
+
+Uninstall app
+
+> **`ADB.uninstall_app('your.package.name')`**
+
+Input text
+
+> **`ADB.input_text('string.to.input')`**
 
 Take screenshot
 
 > **`ADB.take_screenshot('file.name')`**
 
-See available methods
+See all available methods
 
 > **`ADB.help`**
 
