@@ -107,6 +107,11 @@ class ADB
       res.empty? ? nil : res
     end
 
+    def start_intent(aUri)
+      res = `#{adb_shell_command} am start -a android.intent.action.VIEW -d #{aUri}`
+      res.empty? ? nil : res
+    end
+
     def input_text(aText)
       res = `#{adb_shell_command} input text #{aText}`
       res.empty? ? nil : res
