@@ -29,11 +29,11 @@ class ADB
     end
 
     def portrait?
-      orientation.to_boolean.eql?(false)
+      orientation.eql?(0)
     end
 
     def landscape?
-      orientation.to_boolean.eql?(true)
+      orientation != 0
     end
 
     def set_portrait
