@@ -1,6 +1,8 @@
 require 'rake/testtask'
 require 'rubocop/rake_task'
 
+task default: %i[test rubocop]
+
 desc 'Execute unit tests'
 Rake::TestTask.new do |t|
   t.libs << 'spec'
@@ -14,5 +16,3 @@ RuboCop::RakeTask.new(:rubocop) do |t|
   t.options = %w[-D]
   t.fail_on_error = true
 end
-
-task default: :test
