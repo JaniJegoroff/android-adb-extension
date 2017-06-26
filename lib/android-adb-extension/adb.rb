@@ -68,8 +68,8 @@ class ADB
       change_airplane_mode(0)
     end
 
-    def monkey(aPackageName, aEventCount = 500)
-      `#{adb_shell_command} monkey -p #{aPackageName} #{aEventCount}`
+    def monkey(package, event_count = 500)
+      `#{adb_shell_command} monkey -p #{package} #{event_count}`
     end
 
     def lock
@@ -89,38 +89,38 @@ class ADB
       res.empty? ? nil : res
     end
 
-    def bring_to_foreground(aPackage, aActivity)
-      res = `#{adb_shell_command} am start -n #{aPackage}/#{aActivity}`
+    def bring_to_foreground(package, activity)
+      res = `#{adb_shell_command} am start -n #{package}/#{activity}`
       res.empty? ? nil : res
     end
 
-    def reset_app(aPackage)
-      res = `#{adb_shell_command} pm clear #{aPackage}`
+    def reset_app(package)
+      res = `#{adb_shell_command} pm clear #{package}`
       res.empty? ? nil : res
     end
 
-    def stop_app(aPackage)
-      res = `#{adb_shell_command} am force-stop #{aPackage}`
+    def stop_app(package)
+      res = `#{adb_shell_command} am force-stop #{package}`
       res.empty? ? nil : res
     end
 
-    def uninstall_app(aPackage)
-      res = `#{adb_shell_command} pm uninstall #{aPackage}`
+    def uninstall_app(package)
+      res = `#{adb_shell_command} pm uninstall #{package}`
       res.empty? ? nil : res
     end
 
-    def start_intent(aUri)
-      res = `#{adb_shell_command} am start -a android.intent.action.VIEW -d #{aUri}`
+    def start_intent(uri)
+      res = `#{adb_shell_command} am start -a android.intent.action.VIEW -d #{uri}`
       res.empty? ? nil : res
     end
 
-    def input_text(aText)
-      res = `#{adb_shell_command} input text #{aText}`
+    def input_text(text)
+      res = `#{adb_shell_command} input text #{text}`
       res.empty? ? nil : res
     end
 
-    def take_screenshot(aFileName)
-      res = `#{adb_shell_command} screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > #{aFileName}.png`
+    def take_screenshot(file_name)
+      res = `#{adb_shell_command} screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > #{file_name}.png`
       res.empty? ? nil : res
     end
 
@@ -138,28 +138,28 @@ class ADB
 
     private
 
-    def change_accelerometer_control(aMode)
-      adb_settings_system_command('accelerometer_rotation', aMode)
+    def change_accelerometer_control(mode)
+      adb_settings_system_command('accelerometer_rotation', mode)
     end
 
-    def change_device_orientation(aOrientation)
-      adb_settings_system_command('user_rotation', aOrientation)
+    def change_device_orientation(orientation)
+      adb_settings_system_command('user_rotation', orientation)
     end
 
-    def adb_settings_system_command(aName, aValue)
+    def adb_settings_system_command(name, value)
       command = "#{adb_shell_command} content insert"
       param1 = '--uri content://settings/system'
-      param2 = "--bind name:s:#{aName}"
-      param3 = "--bind value:i:#{aValue}"
+      param2 = "--bind name:s:#{name}"
+      param3 = "--bind value:i:#{value}"
 
       `#{command} #{param1} #{param2} #{param3}`
     end
 
-    def change_airplane_mode(aMode)
-      command1 = "#{adb_shell_command} settings put global airplane_mode_on #{aMode}"
+    def change_airplane_mode(mode)
+      command1 = "#{adb_shell_command} settings put global airplane_mode_on #{mode}"
       command2 = "#{adb_shell_command} am broadcast"
       param1 = '-a android.intent.action.AIRPLANE_MODE'
-      param2 = "--ez state #{aMode.to_boolean}"
+      param2 = "--ez state #{mode.to_boolean}"
 
       `#{command1} & #{command2} #{param1} #{param2}`
     end
