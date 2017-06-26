@@ -131,6 +131,12 @@ Take screenshot
 
 > **`ADB.take_screenshot('file.name')`**
 
+Swipe
+
+> **`ADB.swipe(800, 800, 200, 800)`**
+
+> **`ADB.swipe(800, 800, 200, 800, 100)`**
+
 See all available methods
 
 > **`ADB.help`**

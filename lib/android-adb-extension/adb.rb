@@ -124,6 +124,12 @@ class ADB
       res.empty? ? nil : res
     end
 
+    def swipe(x1, y1, x2, y2, duration = nil)
+      args = duration.nil? ? "#{x1} #{y1} #{x2} #{y2}" : "#{x1} #{y1} #{x2} #{y2} #{duration}"
+      res = `#{adb_shell_command} input swipe #{args}`
+      res.empty? ? nil : res
+    end
+
     def help
       public_methods(false)
     end
